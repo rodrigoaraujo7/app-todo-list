@@ -15,11 +15,11 @@ import Task from './src/components/Tasks';
 export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([])
-  
+
   const handleAddTask = () => {
     Keyboard.dismiss(); // remove the keyboard from the screen
-    setTaskItems([...taskItems, task]);
-    setTask(null)
+    setTaskItems([...taskItems, task]); // add a new item task
+    setTask(null) // remove the input value
   }
 
   return (
@@ -72,8 +72,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    bottom: 60,
+    paddingBottom: 35,
+    paddingTop: 35,
+    bottom: 0,
     width: '100%',
+
+    backgroundColor: '#E8EAED95'
   },
   input: {
     backgroundColor: '#fff',
@@ -86,6 +90,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#C0C0C0',
     borderRadius: 60,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 3,
   },
   addWrapper: {
     justifyContent: 'center',
