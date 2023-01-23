@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import { 
+  FlatList,
+  Keyboard,
   KeyboardAvoidingView, 
   StyleSheet, 
   Text, 
@@ -13,9 +15,12 @@ import Task from './src/components/Tasks';
 
 export default function App() {
   const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([])
   
   const handleAddTask = () => {
-    console.log(task)
+    Keyboard.dismiss(); // remove the keyboard from the screen
+    setTaskItems([...taskItems, task]);
+    setTask(null)
   }
 
   return (
@@ -25,9 +30,9 @@ export default function App() {
         <Text style={styles.secondTitle}>Today's tasks</Text>
         <View style={styles.item}>
           {/* This is where the tasks will go! */}
-          <Task text={'Task 1'} />
-          <Task text={'Task 2'} />
-          <Task text={'Task 3'} />
+          {taskItems.map((item, index) => {
+            return <Task key={index} text={item} />
+          })}
         </View>
       </View>
 
